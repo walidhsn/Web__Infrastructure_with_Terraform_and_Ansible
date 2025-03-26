@@ -281,7 +281,6 @@ az network public-ip list --query "[].ipAddress"
    Dual NIC Complexity Cost:
    - +40% Terraform code
    - 2x NSG rules
-   - ARP troubleshooting overhead
    ```
 3. **Cost Optimization**:
    ```text
