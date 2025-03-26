@@ -149,16 +149,19 @@ graph TD
 ```
 
 **Challenges Encountered**:
+- The primary constraint I encountered was the Azure Load Balancer's inherent behavior. It expects backend servers to respond via the same Network Interface Card (NIC) that received the initial request. This design prevented proper communication when targeting the secondary NIC for backend traffic.
 1. **ARP Resolution Issues**:
    - Linux networking stack struggled with multiple default routes
    - Packet loss between NICs due to asymmetric routing
+     
 2. **Health Probe Failures**:
    ```text
    LB Probe Status: Unhealthy
    Reason: TCP connection timeout
    ```
-3. **Complex Configuration**
-
+   
+- I thought it was an ARP Resolution issue but after proper troubleshooting it wasn't an ARP issue.
+  
 ### Final Simplified Design
 ```mermaid
 graph TD
