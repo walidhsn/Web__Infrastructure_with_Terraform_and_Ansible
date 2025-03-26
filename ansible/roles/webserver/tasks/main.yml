@@ -1,0 +1,45 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Deploy index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: 0644
+  notify: Restart Nginx
+
+- name: Configure Nginx to listen on all interfaces
+  template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+    mode: 0644
+  notify: Restart Nginx
+- name: Configure ARP for dual-NIC
+  sysctl:
+    name: "{{ item }}"
+    value: "1"
+    state: present
+    reload: yes
+  loop:
+    - net.ipv4.conf.all.arp_ignore
+    - net.ipv4.conf.all.arp_announce
+
+- name: Persist ARP settings
+  lineinfile:
+    path: /etc/sysctl.conf
+    line: "{{ item }} = 1"
+    regexp: "^#?{{ item }}"
+  loop:
+    - net.ipv4.conf.all.arp_ignore
+    - net.ipv4.conf.all.arp_announce
+  notify: Restart Nginx
+
+- name: Allow HTTP in UFW
+  ufw:
+    rule: allow
+    port: "80"
+    proto: tcp
