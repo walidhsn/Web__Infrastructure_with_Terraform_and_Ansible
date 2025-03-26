@@ -25,6 +25,7 @@
 │   ├── modules/
 │   │   ├── network/
 │   │   ├── key_vault/
+│   │   ├── ssh_key/
 │   │   ├── vm/
 │   │   └── load_balancer/
 │   ├── main.tf
