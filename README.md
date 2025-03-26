@@ -294,7 +294,7 @@ az network public-ip list --query "[].ipAddress"
 ---
 
 ## Final Architecture Validation
-- [Result](http://52.143.191.167/) 🌐
+- [Result](http://52.143.191.167) 🌐
 ### Connectivity Test Results
 ```bash
 # Direct VM Access "52.143.128.117", "52.143.190.230"
