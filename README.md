@@ -45,7 +45,7 @@
 
 ## Project Overview
 Deploys a highly available web infrastructure on Azure with:
-- 2 Ubuntu 22.04 LTS VMs
+- 2 Ubuntu 24.04 LTS VMs
 - Load Balancer with public IP
 - Secure SSH key management via Azure Key Vault
 - Automated Nginx configuration via Ansible
@@ -211,13 +211,14 @@ resource "azurerm_network_interface_backend_address_pool_association" "lb" {
   az vm image list --publisher Canonical --offer 0001-com-ubuntu-server-noble --location <region>
   # Returned empty SKU list in target region
   ```
-- **Solution**: Fallback to Ubuntu 22.04 LTS (Jammy Jellyfish)
+- **Root Cause**: Incorrect offer name format for 24.04
+- **Solution**: Use updated offer/SKU from Azure's image catalog
   ```terraform
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts-gen2" # Verified available SKU
-    version   = "latest"
+  publisher = "Canonical"
+  offer     = "ubuntu-24_04-lts"  
+  sku       = "server"            
+  version   = "latest"
   }
   ```
 
