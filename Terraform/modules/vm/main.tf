@@ -27,8 +27,8 @@ resource "azurerm_network_interface" "lb" {
 
 resource "azurerm_network_interface_backend_address_pool_association" "lb" {
   count                   = var.vm_count
-  network_interface_id    = azurerm_network_interface.main[count.index].id 
-  ip_configuration_name   = "internal"  
+  network_interface_id    = azurerm_network_interface.main[count.index].id  # Using main NIC
+  ip_configuration_name   = "internal" 
   backend_address_pool_id = var.backend_pool_id
 }
 
