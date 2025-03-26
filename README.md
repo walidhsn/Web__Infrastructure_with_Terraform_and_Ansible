@@ -278,15 +278,7 @@ az network public-ip list --query "[].ipAddress"
    - 2x NSG rules
    - ARP troubleshooting overhead
    ```
-
-### Operational Excellence
-1. **Health Monitoring**:
-   ```bash
-   # Monitor LB health
-   az network lb probe list --lb-name lb-web --resource-group rg-tum-webapp-dev --output table
-   ```
-
-2. **Cost Optimization**:
+3. **Cost Optimization**:
    ```text
    Cost Reduction from Simplification:
    - Secondary NIC: $0.80/day eliminated
