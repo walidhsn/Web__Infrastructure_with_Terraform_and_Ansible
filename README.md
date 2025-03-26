@@ -301,7 +301,7 @@ az network public-ip list --query "[].ipAddress"
 curl http://<VM_PUBLIC_IP>
 # "Hello from web-vm-0" or "Hello from web-vm-1"
 
-# Load Balanced Access "52.143.190.230"
+# Load Balanced Access "52.143.191.167"
 curl http://<LB_PUBLIC_IP>
 # Alternating responses from web-vm-0 and web-vm-1
 
